@@ -1,0 +1,28 @@
+<div class="container">
+  <div>
+    <span class="label">Text</span>
+    <input type="text" class="input-field" [(ngModel)]="inputValue" />
+  </div>
+  <div>
+    <span class="label">Color</span>
+    <div *ngFor="let color of colors"
+         [ngClass]="{'red-block': color === 'RED',
+         'green-block': color === 'GREEN',
+         'blue-block' : color === 'BLUE',
+         'selected-block' : color === selectedColor}"
+         (click)="selectColor(color)"
+      class="item-block"></div>
+  </div>
+  <div>
+    <span class="label">Style</span>
+    <div class="item-block text-block"
+         (click)="toggleBold()"
+         [ngClass]="{'selected-block': isBold}">Bold</div>
+    <div class="item-block text-block"
+         (click)="toggleItalic()"
+         [ngClass]="{'selected-block': isItalic}">Italic</div>
+  </div>
+
+  <button type="button" (click)="submit()">Generate</button>
+
+</div>

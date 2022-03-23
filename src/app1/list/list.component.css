@@ -1,0 +1,46 @@
+.container {
+  border: 1px solid lightblue;
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.settings-container {
+  text-align: end;
+}
+
+.block-container {
+  margin-bottom: 10px;
+}
+
+.red-block {
+  background-color: lightpink;
+}
+
+.green-block {
+  background-color: lightgreen;
+}
+
+.blue-block {
+  background-color: lightblue;
+}
+
+.bold-block {
+  font-weight: bold;
+}
+
+.italic-block {
+  font-style: italic;
+}
+
+.block {
+  display: inline-block;
+  min-width: 200px;
+  min-height: 1rem;
+  padding: 5px;
+  vertical-align: middle;
+}
+
+.remove-button {
+  margin-left: 50px;
+}
