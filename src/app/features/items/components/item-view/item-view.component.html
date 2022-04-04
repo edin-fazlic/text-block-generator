@@ -1,0 +1,29 @@
+<div class="container">
+  <button mat-flat-button color="primary" class="add-button"
+          [routerLink]="[route.EDIT]">
+    Edit item
+  </button>
+
+  <mat-list>
+    <mat-list-item>
+      <mat-icon mat-list-icon>commit</mat-icon>
+      <div mat-line>{{item[itemProperty.name]}}</div>
+    </mat-list-item>
+    <mat-list-item>
+      <mat-icon mat-list-icon [style.color]="getItemRarity().color">diamond</mat-icon>
+      <div mat-line>{{getItemRarity().label}}</div>
+    </mat-list-item>
+    <mat-list-item>
+      <mat-icon mat-list-icon>{{getItemType().icon}}</mat-icon>
+      <div mat-line>{{getItemType().label}}</div>
+    </mat-list-item>
+    <mat-list-item *ngIf="item[itemProperty.isAttack]">
+      <mat-icon mat-list-icon>commit</mat-icon>
+      <div mat-line>Attack</div>
+    </mat-list-item>
+    <mat-list-item *ngIf="item[itemProperty.isDefense]">
+      <mat-icon mat-list-icon>commit</mat-icon>
+      <div mat-line>Defense</div>
+    </mat-list-item>
+  </mat-list>
+</div>

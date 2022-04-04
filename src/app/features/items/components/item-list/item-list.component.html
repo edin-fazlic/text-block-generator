@@ -1,0 +1,43 @@
+<div class="container">
+  <ng-container *ngIf="items.length > 0; else emptyList">
+    <div>
+      <div class="settings-container">
+        <button mat-flat-button color="primary" class="add-button"
+                [routerLink]="[route.SEPARATOR, route.ITEMS, route.ADD]">
+          Add new item
+        </button>
+        <mat-slide-toggle [checked]="removeAllowed"
+                          (change)="toggleAllowRemove()"
+                          color="primary">Allow remove
+        </mat-slide-toggle>
+      </div>
+      <hr/>
+    </div>
+
+    <div class="block-container" *ngFor="let item of items">
+      <div [style.border-color]="getItemColor(item)"
+           [routerLink]="[route.SEPARATOR, route.ITEMS, item[itemProperty.id]]"
+           class="block">
+        <mat-icon>{{getItemType(item)}}</mat-icon>
+        {{item.name}}
+      </div>
+
+      <button mat-flat-button type="button"
+              class="remove-button"
+              color="warn"
+              *ngIf="removeAllowed"
+              (click)="remove(item)">Remove
+      </button>
+    </div>
+  </ng-container>
+</div>
+
+<ng-template #emptyList>
+  <div>
+    <mat-icon fontSet="material-icons-outlined" class="icon-margin">category</mat-icon>
+    <span>There are no items.</span>
+  </div>
+  <button mat-flat-button color="primary" class="add-button"
+          [routerLink]="[route.SEPARATOR, route.ITEMS, route.ADD]">Add new item
+  </button>
+</ng-template>

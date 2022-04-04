@@ -1,0 +1,39 @@
+<mat-toolbar class="toolbar">
+  <ng-container *ngFor="let button of buttons">
+    <ng-container [ngSwitch]="button.type">
+
+      <ng-container *ngSwitchCase="'icon'">
+        <button *ngIf="button.routerLink === selectedRoute; else regularButton"
+                mat-icon-button
+                color="primary"
+                [routerLink]="button.routerLink">
+          <mat-icon>{{button.icon}}</mat-icon>
+        </button>
+        <ng-template #regularButton>
+          <button mat-icon-button
+                  [routerLink]="button.routerLink">
+            <mat-icon>{{button.icon}}</mat-icon>
+          </button>
+        </ng-template>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="'text'">
+        <button *ngIf="button.routerLink === selectedRoute; else regularButton"
+                mat-flat-button
+                class="header-button"
+                color="primary"
+                [routerLink]="button.routerLink">
+          {{button.text}}
+        </button>
+        <ng-template #regularButton>
+          <button mat-stroked-button
+                  class="header-button"
+                  [routerLink]="button.routerLink">
+            {{button.text}}
+          </button>
+        </ng-template>
+      </ng-container>
+
+    </ng-container>
+  </ng-container>
+</mat-toolbar>

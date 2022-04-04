@@ -1,0 +1,58 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <div class="container">
+    <h1>Item</h1>
+
+    <mat-form-field appearance="outline" floatLabel="auto">
+      <mat-label>Name</mat-label>
+      <input matInput [formControlName]="itemProperty.name">
+    </mat-form-field>
+
+    <mat-form-field appearance="standard">
+      <mat-label>Rarity</mat-label>
+      <mat-select [formControlName]="itemProperty.rarity">
+        <mat-select-trigger class="select-trigger-w-icon">
+          <ng-container *ngIf="rarity">
+            <mat-icon [style.color]="rarity.color">diamond</mat-icon>
+            {{rarity.label}}
+          </ng-container>
+        </mat-select-trigger>
+        <mat-option *ngFor="let rarity of rarities" [value]="rarity.value">
+          <mat-icon [style.color]="rarity.color">diamond</mat-icon>
+          {{rarity.label}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-checkbox [formControlName]="itemProperty.isAttack"
+                  color="primary">Attack</mat-checkbox>
+
+    <mat-checkbox [formControlName]="itemProperty.isDefense"
+                  color="primary">Defense</mat-checkbox>
+
+    <mat-form-field appearance="standard">
+      <mat-label>Item type</mat-label>
+      <mat-select [formControlName]="itemProperty.itemType">
+        <mat-select-trigger class="select-trigger-w-icon">
+          <ng-container *ngIf="itemType">
+            <mat-icon>{{itemType.icon}}</mat-icon>
+            {{itemType.label}}
+          </ng-container>
+        </mat-select-trigger>
+        <mat-option *ngFor="let itemType of itemTypes" [value]="itemType.value">
+          <mat-icon>{{itemType.icon}}</mat-icon>
+          {{itemType.label}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Gold</mat-label>
+      <mat-icon class="gold" matPrefix>control_point_duplicate</mat-icon>
+      <input matInput readonly [value]="calculateGold()">
+    </mat-form-field>
+
+    <button type="submit"
+            mat-flat-button
+            color="primary">Save</button>
+  </div>
+</form>

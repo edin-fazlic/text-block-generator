@@ -1,22 +1,11 @@
-import { Component } from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
 
-  public blocks: { text: string; color: string; boldSelected: boolean; italicSelected: boolean }[] = [];
-
-  addBlock(block: { text: string; color: string; boldSelected: boolean; italicSelected: boolean }) {
-    this.blocks.push(block);
-  }
-
-  removeBlock(block: { text: string; color: string; boldSelected: boolean; italicSelected: boolean }) {
-    const index = this.blocks.indexOf(block);
-    if (index > -1) {
-      this.blocks.splice(index, 1);
-    }
-  }
 }
