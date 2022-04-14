@@ -7,7 +7,7 @@ export enum ItemType {
 export const ItemTypeMapping = {
   [ItemType.hands]: {
     label: 'Gloves',
-    icon: 'block',
+    icon: 'sports_mma',
     value: ItemType.hands,
   },
   [ItemType.feet]: {

@@ -30,6 +30,8 @@ import {
 import {MatListModule} from '@angular/material/list';
 import {ItemResolver} from './resolvers/item.resolver';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {ItemService} from './services/item.service';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -59,9 +61,11 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatToolbarModule,
     MatListModule,
     MatSlideToggleModule,
+    HttpClientModule,
   ],
   providers: [
     ItemResolver,
+    ItemService,
   ],
   bootstrap: [AppComponent]
 })

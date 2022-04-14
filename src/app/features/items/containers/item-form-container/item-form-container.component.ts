@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Item} from '../../../../models/item.model';
 import {dbItems} from '../../../../utils/fake-db';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -10,7 +10,7 @@ import {ResolverResponse} from '../../../../constants/resolver-response.constant
   selector: 'app-item-form-container',
   templateUrl: './item-form-container.component.html',
 })
-export class ItemFormContainerComponent {
+export class ItemFormContainerComponent implements OnInit {
 
   public item: Item | undefined;
 
