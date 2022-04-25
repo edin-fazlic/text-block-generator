@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Route} from '../../../../constants/route.constants';
 import {ItemProperty} from '../../../../models/item-property.enum';
 import {ResolverResponse} from '../../../../constants/resolver-response.constants';
+import {ItemService} from '../../../../services/item.service';
 
 @Component({
   selector: 'app-item-form-container',
@@ -20,6 +21,7 @@ export class ItemFormContainerComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
+    private itemService: ItemService,
   ) {
   }
 
@@ -36,10 +38,11 @@ export class ItemFormContainerComponent implements OnInit {
     if (this.isEditing) {
       const existingIndex = this.items.findIndex(i => i[ItemProperty.id] === item[ItemProperty.id]);
       this.items.splice(existingIndex, 1, item);
+      this.router.navigate([Route.ITEMS]);
     } else {
-      item[ItemProperty.id] = new Date().getTime().toString();
-      this.items.push(item);
+      this.itemService.create(item).subscribe(value => {
+        this.router.navigate([Route.ITEMS]);
+      });
     }
-    this.router.navigate([Route.ITEMS]);
   }
 }

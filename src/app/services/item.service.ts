@@ -16,7 +16,11 @@ export class ItemService {
   }
 
   public getItem(id:string): Observable<Item> {
-    return this.http.get<Item>(`${this.baseUrl}/id`);
+    return this.http.get<Item>(`${this.baseUrl}/${id}`);
+  }
+
+  public create(item:Item): Observable<Item> {
+    return this.http.post<Item>(`${this.baseUrl}`, item);
   }
 
 }
