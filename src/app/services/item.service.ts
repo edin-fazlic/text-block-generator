@@ -2,11 +2,12 @@ import {Injectable} from '@angular/core';
 import {Item} from '../models/item.model';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {environment} from '../../environments/environment';
 
 @Injectable()
 export class ItemService {
 
-  private readonly baseUrl: string = 'http://localhost:8080/items';
+  private readonly baseUrl: string = `${environment.backendUrl}/items`;
 
   constructor(private http:HttpClient) {
   }
