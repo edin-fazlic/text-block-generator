@@ -24,4 +24,12 @@ export class ItemService {
     return this.http.post<Item>(`${this.baseUrl}`, item);
   }
 
+  public update(id:string, item:Item): Observable<Item> {
+    return this.http.put<Item>(`${this.baseUrl}/${id}`, item);
+  }
+
+  public delete(id:string): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/${id}`);
+  }
+
 }

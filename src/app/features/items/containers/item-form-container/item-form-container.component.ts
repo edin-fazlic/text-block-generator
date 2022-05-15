@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {Item} from '../../../../models/item.model';
-import {dbItems} from '../../../../utils/fake-db';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Route} from '../../../../constants/route.constants';
 import {ItemProperty} from '../../../../models/item-property.enum';
@@ -16,7 +15,6 @@ export class ItemFormContainerComponent implements OnInit {
   public item: Item | undefined;
 
   private isEditing: boolean = false;
-  private items: Item[] = dbItems;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -36,11 +34,11 @@ export class ItemFormContainerComponent implements OnInit {
 
   saveItem(item: Item): void {
     if (this.isEditing) {
-      const existingIndex = this.items.findIndex(i => i[ItemProperty.id] === item[ItemProperty.id]);
-      this.items.splice(existingIndex, 1, item);
-      this.router.navigate([Route.ITEMS]);
+      this.itemService.update(item[ItemProperty.id]!, item).subscribe(() => {
+        this.router.navigate([Route.ITEMS]);
+      });
     } else {
-      this.itemService.create(item).subscribe(value => {
+      this.itemService.create(item).subscribe(() => {
         this.router.navigate([Route.ITEMS]);
       });
     }

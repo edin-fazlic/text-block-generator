@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Item} from '../../../../models/item.model';
-import {ActivatedRoute} from '@angular/router';
-import {ResolverResponse} from '../../../../constants/resolver-response.constants';
+import {ItemProperty} from '../../../../models/item-property.enum';
+import {ItemService} from '../../../../services/item.service';
+import {Subject} from 'rxjs';
 
 @Component({
   selector: 'app-item-list-container',
@@ -9,22 +10,26 @@ import {ResolverResponse} from '../../../../constants/resolver-response.constant
 })
 export class ItemListContainerComponent implements OnInit {
 
-  public items: Item[] = [];
+  public items: Subject<Item[]> = new Subject<Item[]>();
 
-  constructor(private activatedRoute: ActivatedRoute) {
+  constructor(
+    private itemService: ItemService,
+  ) {
   }
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe((response: any) => {
-      console.log(response);
-      this.items = response[ResolverResponse.ITEMS];
-    });
+    this.reloadItems();
   }
 
   removeItem(item: Item) {
-    const index = this.items.indexOf(item);
-    if (index > -1) {
-      this.items.splice(index, 1);
-    }
+    this.itemService.delete(item[ItemProperty.id]!).subscribe(() => {
+      this.reloadItems();
+    });
+  }
+
+  private reloadItems() {
+    this.itemService.getItems().subscribe(items => {
+      this.items.next(items);
+    });
   }
 }

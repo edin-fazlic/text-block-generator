@@ -66,6 +66,7 @@ import {HttpClientModule} from '@angular/common/http';
   providers: [
     ItemResolver,
     ItemService,
+    ItemResolver,
   ],
   bootstrap: [AppComponent]
 })

@@ -15,7 +15,6 @@ import {
 } from './features/items/containers/item-view-container/item-view-container.component';
 import {ItemResolver} from './resolvers/item.resolver';
 import {ResolverResponse} from './constants/resolver-response.constants';
-import {ItemsResolver} from './resolvers/items.resolver';
 
 const routes: Routes = [
   {
@@ -28,9 +27,6 @@ const routes: Routes = [
           {
             path: Route.EMPTY,
             component: ItemListContainerComponent,
-            resolve: {
-              [ResolverResponse.ITEMS]: ItemsResolver,
-            }
           },
           {
             path: Route.ADD,

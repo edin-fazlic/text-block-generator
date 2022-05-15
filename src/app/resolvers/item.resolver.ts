@@ -5,7 +5,7 @@ import {Item} from '../models/item.model';
 import {Route} from '../constants/route.constants';
 import {ItemService} from '../services/item.service';
 
-@Injectable({providedIn: 'root'})
+@Injectable()
 export class ItemResolver implements Resolve<Item> {
 
   constructor(private itemService:ItemService) {

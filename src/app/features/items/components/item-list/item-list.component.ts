@@ -12,7 +12,7 @@ import {Route} from '../../../../constants/route.constants';
 })
 export class ItemListComponent {
   @Input()
-  items: Item[] = [];
+  items: Item[] | null = [];
 
   @Output()
   removeItem: EventEmitter<Item> = new EventEmitter<Item>()

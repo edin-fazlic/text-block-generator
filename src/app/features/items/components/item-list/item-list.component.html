@@ -1,5 +1,5 @@
 <div class="container">
-  <ng-container *ngIf="items.length > 0; else emptyList">
+  <ng-container *ngIf="items && items.length > 0; else emptyList">
     <div>
       <div class="settings-container">
         <button mat-flat-button color="primary" class="add-button"
