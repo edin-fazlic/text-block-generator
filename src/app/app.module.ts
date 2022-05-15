@@ -32,6 +32,10 @@ import {ItemResolver} from './resolvers/item.resolver';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {ItemService} from './services/item.service';
 import {HttpClientModule} from '@angular/common/http';
+import {provideAuthorizationInterceptor} from './interceptors/authorization.interceptor';
+import {AuthorizedGuard} from './guards/authorized.guard';
+import {LoginComponent} from './features/common/login/login.component';
+import {AuthService} from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -45,6 +49,7 @@ import {HttpClientModule} from '@angular/common/http';
     ItemViewContainerComponent,
     HeaderComponent,
     StatsComponent,
+    LoginComponent,
     PageNotFoundComponent,
   ],
   imports: [
@@ -64,6 +69,9 @@ import {HttpClientModule} from '@angular/common/http';
     HttpClientModule,
   ],
   providers: [
+    provideAuthorizationInterceptor(),
+    AuthorizedGuard,
+    AuthService,
     ItemResolver,
     ItemService,
     ItemResolver,

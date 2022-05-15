@@ -15,14 +15,21 @@ import {
 } from './features/items/containers/item-view-container/item-view-container.component';
 import {ItemResolver} from './resolvers/item.resolver';
 import {ResolverResponse} from './constants/resolver-response.constants';
+import {AuthorizedGuard} from './guards/authorized.guard';
+import {LoginComponent} from './features/common/login/login.component';
 
 const routes: Routes = [
+  {
+    path: Route.LOGIN,
+    component: LoginComponent,
+  },
   {
     path: Route.EMPTY,
     component: MainComponent,
     children: [
       {
         path: Route.ITEMS,
+        canActivateChild: [AuthorizedGuard],
         children: [
           {
             path: Route.EMPTY,

@@ -7,4 +7,5 @@ export class Route {
 
   public static ITEMS = 'items';
   public static STATS = 'stats';
+  public static LOGIN = 'login';
 }
